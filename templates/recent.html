@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block content%}
+<section>
+    <h1>Convalescent plasma treatment for SARS-CoV-2 infected high-risk patients: a matched pair analysis to the LEOSS cohort &#8595;</h1>
+  </section>
+  <section>
+    <div class="container reveal">
+      <h2>Establishing the optimal treatment for COVID-19 patients remains challenging. Specifically, immunocompromised and pre-diseased patients are at high risk for severe disease course and face limited therapeutic options.</h2>
+      <div class="text-container">
+        <div class="text-box">
+          <h3>Convalescent plasma</h3>
+          <p>
+            Convalescent plasma (CP) has been considered as therapeutic approach, but reliable data are lacking, especially for high-risk patients. We performed a retrospective analysis of 55 hospitalized COVID-19 patients from University Hospital Duesseldorf (UKD) at high risk for disease progression
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>Usage</h3>
+          <p>
+            Convalescent plasma has been used during pandemics caused by influenza (1918)9, Severe Acute Respiratory Syndrome associated Corona-Virus SARS-CoV (2003) and influenza H1N1 (2009) and is reported to have resulted in lower mortality.
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>Mortality Rate</h3>
+          <p>
+            The aggregate mortality rate was lower in the transfused group than in the control groups. A major determinant was the timing of CP administration: early transfusion (within 3 days of hospital admission) with high antibody titers resulted in lower mortality.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="container reveal">
+      <h2>Survival analysis</h2>
+      <div class="text-container">
+        <div class="text-box">
+          <h3>CP Therapy</h3>
+          <p>
+            Eighteen patients received CP therapy in the first 3 days and 21 eight or more days after onset of symptoms. Dividing the patients into four subgroups according to days after onset of symptoms at first CP administration: 0–3, 4–5, 6–7 and 8 ≥ days, we observe there is no significant difference in mortality (log-rank: 0.72) among these subgroups.
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>Critical vs Non critical</h3>
+          <p>
+            Patients receiving the first CP/CPs during the uncomplicated phase had higher chances of survival vs. those in the critical illness phase (log-rank = 0.007). Furthermore, patients with better kidney function and non-dialysis patients had a higher chance of survival but the difference was not statistically significant (log-rank = 0.458 and 0.224 respectively).
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>ISARIC-4C</h3>
+          <p>
+            None of the patients with an ISARIC-4C score (n = 5) under 3 died vs. 16/27 patients with a very high score (15–21 points) (log rank = 0.23). The ISARIC-4C score for patients receiving first CPs during the uncomplicated phase ranged from 0.3 to 40.1%. Out of the five patients with ISARIC-4C score under 3, only two patients did not have other risk factors such as reduced kidney function, immunodeficiency or advanced age.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="container reveal">
+      <h2>LEOSS cohort: patients with CP therapy</h2>
+      <div class="text-container">
+        <div class="text-box">
+          <h3>CP Analysis</h3>
+          <p>
+            Out of the 156 patients who received CP therapy, 98 patients were in the critical phase. The COVID-19 associated mortality rate for these patients was 34.7%. Two patients received CPs both in the uncomplicated and complicated phase, none died.
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>Factors associated with mortality</h3>
+          <p>
+            In the UKD cohort the factors introduced in the regression model were stage at CP, reduced kidney function, immunodeficiency and age (R2 = 0.294). Dialysis was analysed separately to avoid multicollinearity (R2 = 0.018).
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>Matched-pairs analysis of UKD CP cohort</h3>
+          <p>
+            The propensity score matching was performed using five variables: age, gender, stage at CP, immunosuppression and presence of reduced renal function. Four controls were matched to one case. There was no difference in survival between the UKD and LEOSS matched cases. Patient in the UKD cohort had longer hospital and ICU stays.
+          </p>
+        </div>
+      </div>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Asap&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Asap", sans-serif;
+}
+body{
+  background: #42455a;
+}
+section{
+  min-height: 100vh;
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+}
+section:nth-child(1){
+    color: #42455a;
+  background-image: url("https://media.wired.com/photos/5e87a594b9399f00096a2b5b/master/pass/Science-clinical-trials-plasma-924486090.jpg");
+  background-repeat: no-repeat;
+  }
+section:nth-child(2){
+  color: #42455a;
+  background: #e0ffff;
+} 
+section:nth-child(3){
+  color: #e0ffff;
+}
+section:nth-child(4){
+  color: #42455a;
+  background: #e0ffff;
+}
+section .container{
+  margin: 100px;
+}
+section h1{
+  font-size: 3rem;
+  margin: 20px;
+}
+section h2{
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+}
+section .text-container{
+   display: flex;
+}
+section .text-container .text-box{
+  margin: 20px;
+  padding: 20px;
+  background: #00c2cb;
+}
+section .text-container .text-box h3{
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px){
+  section h1{
+    font-size: 2rem;
+    text-align: center;
+  }
+  section .text-container{
+    flex-direction: column;
+  }
+}
+
+.reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 1s all ease;
+}
+
+.reveal.active{
+  transform: translateY(0);
+  opacity: 1;
+}
+    </style>
+    <script>
+        function reveal() {
+  var reveals = document.querySelectorAll(".reveal");
+
+  for (var i = 0; i < reveals.length; i++) {
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    var elementVisible = 150;
+
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    } else {
+      reveals[i].classList.remove("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", reveal);
+
+    </script>
+  </section>
+
+  {% endblock %}

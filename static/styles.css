@@ -1,0 +1,83 @@
+body {
+    position: relative;
+    background-color: rgba(24,25,122,0.7);
+}
+
+body::before {
+    content : '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url('protectlife.jpg') 100% 100% no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+a {
+    color: #F51720;
+    transition: all 0.5s linear;
+}
+
+a:hover {
+    transition: all 0.5s linear;
+}
+
+
+
+/* tag with class */
+
+span.link {
+    color: white;
+    font-size : 15px;
+}
+
+/* Handy CSS */
+.a-bold {
+    font-weight: bold;
+}
+
+.a-color {
+    color: white
+}
+
+
+/* Other CSS */
+
+.headerBg {
+    background: linear-gradient(to right, rgba(24,25,122,0.5), rgba(24,25,122,0.2))
+}
+
+.flexbase {
+    display: flex;
+    align-items: center;
+}
+
+.flexbase > ul {
+    flex-direction: row;
+}
+
+.flexbase span:first-child {
+    font-size: 15px;
+    margin-right: 3px;
+}
+
+.splcardbg {
+    background-color : rgba(255,255,255,0.7);
+    border-radius: 5px;
+}
+
+.paddingAccord {
+    padding: 10px 0px 26px;
+}
+
+.paddingBottom25{
+    padding-bottom: 25px;
+}
+
+.padding0 {
+    padding: 0;
+}

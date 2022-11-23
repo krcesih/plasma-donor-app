@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% block content%}
+
+<br>
+<br>
+<section>
+    <h1>First transfusions of lab-grown blood and plasma&#8595;</h1>
+  </section>
+  <section>
+    <div class="container reveal">
+      <h2>How is lab-grown blood made?</h2>
+      <div class="text-container">
+        <div class="text-box">
+          <h3>Research</h3>
+          <p>
+            To create lab-grown blood, the researchers in this trial separate stem cells from the RBCs present within the blood provided by NHSBT donors. More specifically, magnetic beads were used to detect flexible stem cells within the samples that have the potential to eventually be transformed into RBCs.
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>The first transfusions</h3>
+          <p>
+            As of November 7, 2022, two patients in the RESTORE trial have been transfused with very small amounts between five and ten milliliters (ml) of the lab-grown RBCs. Both individuals appear to tolerate the transfusions well and have not reported any notable side effects.
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>About the RESTORE trial</h3>
+          <p>
+            The RESTORE trial is a single-center, randomized, controlled, phase I cross-over trial that is a joint effort between the National Health Service (NHS) Blood and Transplant (NHSBT) and the University of Bristol. The aim of this trial is to determine whether blood cells manufactured from donor stem cells perform better than red blood cells (RBCs) obtained from the same donor in recipients.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="container reveal">
+      <h2>Clinical analysis</h2>
+      <div class="text-container">
+        <div class="text-box">
+          <h3>Volunteers</h3>
+          <p>
+            The first two people have taken part in the trial, which aims to test the blood in at least 10 healthy volunteers. They will get two donations of 5-10mls at least four months apart - one of normal blood and one of lab-grown blood.
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>Mass Production of Blood</h3>
+          <p>
+            Dr Farrukh Shah, the medical director of transfusion at NHS Blood and Transplant, said: "This world-leading research lays the groundwork for the manufacture of red blood cells that can safely be used to transfuse people with disorders like sickle cell.
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>Research Teams</h3>
+          <p>
+            The research project combines teams in Bristol, Cambridge, London and at NHS Blood and Transplant. It focuses on the red blood cells that carry oxygen from the lungs to the rest of the body.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="container reveal">
+      <h2>How will this technology help patients?    </h2>
+      <div class="text-container">
+        <div class="text-box">
+          <h3>RBC Disorders</h3>
+          <p>
+            Several different RBC disorders require affected patients to receive periodic blood transfusions. Anemia, for example, which can be further categorized as iron deficiency or aplastic anemia, may need blood transfusions to prevent infection, bleeding, and fatigue.
+          </p>
+        </div>
+        <div class="text-box">
+          <h3>Anemia</h3>
+          <p>
+            In addition to these two types of anemia, individuals with sickle cell anemia may also require blood transfusions as part of their treatment plan, particularly when in crisis. In these cases, blood transfusions can help treat pain, chest problems, and leg sores, as well as reduce the likelihood of a stroke occurring during sickle crises.
+        </p>
+        </div>
+        <div class="text-box">
+          <h3>Thalassemia</h3>
+          <p>
+            Thalassemia, which is a genetic blood disorder that prevents patients from producing hemoglobin, can only be treated with regular blood transfusions. Conversely, patients with hemophilia and von Willebrand disease, both of which are genetic plasma disorders that are often categorized by excessive bleeding, may also require blood transfusions in emergency situations.
+        </p>
+        </div>
+      </div>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Asap&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Asap", sans-serif;
+}
+body{
+  background: #42455a;
+}
+section{
+  min-height: 100vh;
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+}
+section:nth-child(1){
+    color: #e0ffff;
+  background-image: url("https://www.openaccessgovernment.org/wp-content/uploads/2019/01/dreamstime_xxl_15329073.jpg");
+  background-repeat: no-repeat;
+  }
+section:nth-child(2){
+  color: #42455a;
+  background: #e0ffff;
+} 
+section:nth-child(3){
+  color: #e0ffff;
+}
+section:nth-child(4){
+  color: #42455a;
+  background: #e0ffff;
+}
+section .container{
+  margin: 100px;
+}
+section h1{
+  font-size: 3rem;
+  margin: 20px;
+}
+section h2{
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+}
+section .text-container{
+   display: flex;
+}
+section .text-container .text-box{
+  margin: 20px;
+  padding: 20px;
+  background: #00c2cb;
+}
+section .text-container .text-box h3{
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px){
+  section h1{
+    font-size: 2rem;
+    text-align: center;
+  }
+  section .text-container{
+    flex-direction: column;
+  }
+}
+
+.reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 1s all ease;
+}
+
+.reveal.active{
+  transform: translateY(0);
+  opacity: 1;
+}
+    </style>
+    <script>
+        function reveal() {
+  var reveals = document.querySelectorAll(".reveal");
+
+  for (var i = 0; i < reveals.length; i++) {
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    var elementVisible = 150;
+
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    } else {
+      reveals[i].classList.remove("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", reveal);
+
+    </script>
+  </section>
+{% endblock %}

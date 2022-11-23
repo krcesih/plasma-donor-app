@@ -1,0 +1,294 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container-fluid">
+  <center>
+    <div class="card text-left mt-3 splcardbg" style="width: 35rem">
+      <div class="card-body">
+        <form class="form-group" action="{{url_for('index')}}" method="POST">
+          <label for="sel"> Search by:</label>
+          <select
+            name="type"
+            class="form-control"
+            id="exampleFormControlSelect1"
+            required
+          >
+            <option value="blood">Blood Group</option>
+            <option value="donorname">Donor Name</option></select
+          ><br />
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="search"
+            placeholder="Search"
+            aria-label="Search"
+            required
+          /><br />
+          <center>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+              Search
+            </button>
+          </center>
+        </form>
+      </div>
+    </div>
+  </center>
+</div>
+<div class="container-fluid mb-2 mt-2">
+  <div class="splcardbg">
+    {% if search!=NULL %}
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+          <span data-toggle="collapse" href="#searchDonors" role="button" aria-expanded="false" aria-controls="searchDonors">Search results: <i class="fa fa-caret-down"></i></span>
+        </li>
+      </ol>
+    </nav>
+
+    <center class="paddingAccord collapse" id="searchDonors">
+      <div class="accordion" id="searchUserExpand">
+        {% for s in search %}
+        <div class="card text-left" style="width: 70rem">
+          {% if s['AVAILABLE'] %}
+            <div class="card-header" style="color: lightgreen" data-toggle="collapse" data-target={{"#collapsesearch" + s["INDEX"] | string}} aria-expanded="true" aria-controls={{ "collapsesearch" + s["INDEX"] | string }}>{{s["NAME"]}} (Available)</div>
+          {% else %}
+            <div class="card-header" style="color: red" data-toggle="collapse" data-target={{"#collapsesearch" + s["INDEX"] | string}} aria-expanded="false" aria-controls={{ "collapsesearch" + s["INDEX"] | string }}>{{s["NAME"]}} (Unavailable)</div>
+          {% endif %}
+          <div class="card-body ml-3" data-parent="#searchUserExpand" aria-labelledby={{"headingsearch" + s["INDEX"] | string }} id={{"collapsesearch" + s["INDEX"] | string}}>
+            <h5 class="card-title ml-3">{{s['EMAIL']}}</h5>
+            <h6 class="card-subtitle mb-2 ml-3 text-muted">
+              Blood Group: {{s['BG']}}
+            </h6>
+            <p class="card-text ml-3">
+              Address: {{s["ADDR"]}} {{ s["CITY"]}} {{s['PIN']}}
+              <br />
+
+              {% if session['username'] == s['EMAIL']%}
+
+              <span
+                class="d-inline-block"
+                data-toggle="popover"
+                data-content="Disabled popover"
+              >
+                <button
+                  class="btn btn-primary mt-2 content-justify-end"
+                  style="pointer-events: none"
+                  type="button"
+                  disabled
+                >
+                  contact for plasma
+                </button>
+              </span>
+
+              {% elif session['logged_in'] == True %}
+
+              <button
+                type="button"
+                class="btn btn-primary mt-1 content-justify-end"
+                data-toggle="modal"
+                data-target="#exampleModalCenter2"
+              >
+                contact for plasma
+              </button>
+            </p>
+
+            {% endif %}
+          </div>
+          <br />
+
+
+          <div
+              class="modal fade"
+              id="exampleModalCenter2"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalCenterTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">
+                      contact for plasma
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form
+                      id="contactform"
+                      method="POST"
+                      action="{{url_for('contactforblood',emailid=s['EMAIL'])}}"
+                    >
+                      <label for="name">Name</label>
+                      <input type="text" name="nm" class="form-control" required />
+                      <label for="addr"> confirm your Address</label>
+                      <textarea name="add" class="form-control" required></textarea>
+
+                      <button
+                        class="btn btn-outline-success my-2 my-sm-0"
+                        type="submit"
+                      >
+                        Submit
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary mt-1"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %} {% endif %}
+        </div>
+      </div>
+    </center>
+  </div>
+</div>
+
+<div class="container-fluid paddingBottom25">
+  <div class="splcardbg">
+    <!-- Content here -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+        <span data-toggle="collapse" href="#regDonors" role="button" aria-expanded="false" aria-controls="regDonors">Registered donors: <i class="fa fa-caret-down"></i></span>
+        </li>
+      </ol>
+    </nav>
+    
+
+    <center class="collapse" id="regDonors">
+      <div class="accordion" id="userExpand">
+        
+        {% for row in rows %}
+        <div class="card text-left" id={{"heading" + row["INDEX"] | string }} style="width: 70rem">
+          {% if row['AVAILABLE'] == True %}
+          <div class="card-header" style="color : lightgreen" data-toggle="collapse" data-target={{"#collapse" + row["INDEX"] | string}} aria-expanded="true" aria-controls={{"collapse" + row["INDEX"] | string}}>{{row["NAME"]}} (Available)</div>
+          {% else %}
+          <div class="card-header" style="color : red" data-toggle="collapse" data-target={{"#collapse" + row["INDEX"] | string}} aria-expanded="false" aria-controls={{"collapse" + row["INDEX"] | string}}>{{row["NAME"]}} (Unavailable)</div>
+          {% endif %}
+          <div class="card-body ml-3" data-parent="#userExpand" aria-labelledby={{"heading" + row["INDEX"] | string }} id={{"collapse" + row["INDEX"] | string}}>
+            <h5 class="card-title ml-3">{{row['EMAIL']}}</h5>
+            <h6 class="card-subtitle mb-2 ml-3 text-muted">
+              Blood Group: {{row['BG']}}
+            </h6>
+            <p class="card-text ml-3">
+              Address: {{row["ADDR"]}} {{ row["CITY"]}} {{row['PIN']}}
+              <br />
+              {% if session['username'] == row['EMAIL']%}
+
+              <span
+                class="d-inline-block"
+                data-toggle="popover"
+                data-content="Disabled popover"
+              >
+                <button
+                  class="btn btn-primary mt-2"
+                  style="pointer-events: none"
+                  type="button"
+                  disabled
+                >
+                  contact for plasma
+                </button>
+              </span>
+
+              {% elif session['logged_in'] == True %}
+              <button
+                type="button"
+                class="btn btn-primary mt-1"
+                onclick="send_notification_clicked(row['EMAIL']);"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+                
+              >
+                contact for plasma
+              </button>
+            </p>
+
+            <div
+              class="modal fade"
+              id="exampleModalCenter"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalCenterTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">
+                      contact for plasma
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form
+                      id="contactform"
+                      method="POST"
+                      action="{{url_for('contactforblood',emailid=row['EMAIL'])}}"
+                    >
+                      <label for="name">Name</label>
+                      <input type="text" name="nm" class="form-control" required />
+                      <label for="addr"> confirm your Address</label>
+                      <textarea name="add" class="form-control" required></textarea>
+
+                      <button
+                        class="btn btn-outline-success my-2 my-sm-0"
+                        type="submit"
+                      >
+                        Submit
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary mt-1"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endif %}
+          </div>
+        </div>
+        <br />
+        {% endfor %}
+      </div>
+    </center>
+  </div>
+</div>
+
+
+{% with messages = get_flashed_messages() %} {%if messages%} {%for mess in
+messages%}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {{mess}}
+</div>
+
+
+{%endfor%} {%endif%} {% endwith %} {% endblock %}
+
+

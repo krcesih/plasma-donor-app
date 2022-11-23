@@ -1,0 +1,163 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Plasma Life Saver</title>
+        {% else %}
+        <title>Welcome to Plasma Life Saver</title>
+        {% endif %}
+        <link rel="shortcut icon" href="{{url_for('static', filename='d.ico')}}"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/71be2732a7.js" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='numscroller-1.0.js')}}"></script>
+<style>div.someclass {
+background-size: cover;
+}
+</style>
+
+    </head>
+    <body>
+
+
+
+      {% if session['usertype'] == 'recipients' %}
+
+      <!-- <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #b71c1c;"> -->
+      <nav class="navbar headerBg sticky-top">
+        <div class="container-fluid">
+          <!-- Nav Header -->
+          <div class="navbar-header flexbase">
+            <a class="navbar-brand a-bold a-color" href="/">Plasma Life Saver</a>
+            <a class="navbar-brand" href="/dashboard"><span class="fa fa-home"></span><span class="link"> Dashboard<span class="sr-only">(current)</span></a>
+            <ul class="nav navbar-nav flexbase">
+              <li><a class="navbar-brand" href="/"><span class="fa fa-circle-user"></span><span class="link"> Search</span></a></li>
+              <li><a class="navbar-brand" href="{{url_for('notifyusers')}}"><span class="fa fa-user-plus"></span><span class="link"> Notifications</span></a></li>
+            </ul>
+          </div>
+
+          <div class="flexbase" >
+            <ul class="navbar-nav ml-auto">
+              <li class="navbar-brand nav-item padding0">
+                <a class="nav-link a-bold a-color" href="#"> Hi, {{ session['name'] }}</a>
+              </li>
+              <li class="navbar-brand nav-item padding0">
+                <a class="nav-link a-color" href="{{url_for('logout')}}">Logout</a>
+              </li>
+            
+            </ul>
+          </div>
+        </div>
+        
+       
+      
+    </div>
+
+  </nav>
+
+      {% elif session['logged_in'] == True and session['usertype'] == 'donor' %}
+
+      <nav class="navbar headerBg sticky-top">
+        <div class="container-fluid">
+          <!-- Nav Header -->
+          <div class="navbar-header flexbase">
+            <a class="navbar-brand a-bold a-color" href="/">Plasma Life Saver</a>
+            <a class="navbar-brand" href="/"><span class="fa fa-home"></span><span class="link"> Home<span class="sr-only">(current)</span></a>
+            <ul class="nav navbar-nav flexbase">
+              <li><a class="navbar-brand" href="{{url_for('myprofile',email=session['username'])}}"><span class="fa fa-circle-user"></span><span class="link">My Profile</span></a></li>
+              <li><a class="navbar-brand" href="{{url_for('notifications')}}"><span class="fa fa-user-plus"></span><span class="link"> Notifications</span></a></li>
+            </ul>
+          </div>
+          <div class="flexbase">
+            <ul class="navbar-nav ml-auto">
+              <li class="navbar-brand nav-item" style="align-self: center;">
+                {% if session['level'] == 0  %}
+                  <a class="nav-link" href="#" style="color: azure"><i class="fa-solid fa-ribbon"></i></a>
+                {% elif session['level'] > 0 and session['level'] < 7 %}
+                  <a class="nav-link" href="#" style="color: skyblue"><i class="fa-solid fa-ribbon"></i></a>
+                {% elif session['level'] >= 7 and session['level'] < 14 %}
+                  <a class="nav-link" href="#" style="color: red"><i class="fa-solid fa-ribbon"></i></a>
+                {% else %}
+                  <a class="nav-link" href="#" style="color: gold"><i class="fa-solid fa-ribbon"></i></a>
+                {% endif %}
+              </li>
+              <li class="navbar-brand nav-item padding0">
+                <a class="nav-link a-bold a-color" href="#"> Hi, {{ session['name'] }}</a>
+              </li>
+              <li class="navbar-brand nav-item padding0">
+                <a class="nav-link a-color" href="{{url_for('logout')}}">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+      
+
+
+      
+
+  </div>
+
+</nav>
+
+
+      {%else%}
+
+
+      <nav class="navbar headerBg sticky-top">
+        <div class="container-fluid">
+          <!-- Nav Header -->
+          <div class="navbar-header flexbase">
+            <a class="navbar-brand a-bold a-color" href="/">Plasma Life Saver</a>
+            <a class="navbar-brand" href="/"><span class="fa fa-home"></span><span class="link"> Home<span class="sr-only">(current)</span></a>
+            <ul class="nav navbar-nav flexbase">
+              <li><a class="navbar-brand" href="/login"><span class="fa fa-circle-user"></span><span class="link"> Login</span></a></li>
+              <li><a class="navbar-brand" href="{{url_for('add')}}"><span class="fa fa-user-plus"></span><span class="link"> Register</span></a></li>
+              <li><a class="navbar-brand" href="{{url_for('news')}}"><span class="fa-regular fa-newspaper"></span><span class="link"> News</span></a></li>
+              <li><a class="navbar-brand" href="{{url_for('trend')}}"><span class="fa-light fa-money-bill-trend-up"></span><span class="link"> Trends</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+
+
+    {%endif%}
+
+
+
+
+
+          {% block content %}
+
+           {% endblock %}
+
+      </body>
+
+
+<script type="text/javascript">
+    function send_notification_clicked(email)
+    {
+    var element = document.getElementById("contactform");
+    element.setAttribute("action",  '/contactforblood/'+email);
+    }
+    </script>
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "88c847cd-5812-46ce-aa47-2f69ad5319c6", // The ID of this integration.
+    region: "us-south", // The region your integration is hosted in.
+    serviceInstanceID: "876bd92e-09a4-4938-9171-5f37eea70d7d", // The ID of your service instance.
+    onLoad: function(instance) { instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
+</html>

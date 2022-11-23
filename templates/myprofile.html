@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{%for row in rows%}
+<center>
+<div class="card text-left mt-5" style="width: 35rem;">
+  <div class="card-body">
+      <form action = "{{url_for('myprofile',email=session['username'])}}" method = "POST">
+        <div class="form-group">
+         <h3>Donor Information</h3>
+
+
+         <label for="name">Name</label>
+         <input type = "text"  class="form-control" name = "name" value="{{row['NAME']}}" required/><br>
+
+
+
+         <label for="name">Address</label>
+         <input type = "text" name = "addr"  class="form-control" value="{{row['ADDR']}}" required/><br>
+
+         <label for="name">City</label>
+         <input type = "text" name ="city" class="form-control" value="{{row['CITY']}}" required/><br>
+
+         <label for="name">Pin</label>
+         <input type = "text" name ="pin" class="form-control" value="{{row['PIN']}}" required/><br>
+
+         <label for="name">Blood group</label>
+         <input type = "text" name ="bg" class="form-control" value="{{row['BG']}}" required/><br>
+         <label for="exampleInputEmail1">Email address</label>
+        <input type = "email" name ="email" class="form-control" value="{{row['EMAIL']}}" required/><br>
+        <label for="Available">Available</label>
+        
+        <select name="Aval"  class="form-control" id="exampleFormControlSelect2">
+           <option value="T" selected>Yes</option>
+           <option value="F">NO</option>
+         </select>
+         <br></br>
+         <input type = "submit" value = "Update" class="btn btn-primary" /><br>
+       </div>
+      </form>
+      </div>
+      </div>
+      </center>
+
+
+
+{%endfor%}
+
+ {% with messages = get_flashed_messages() %}
+ {%if messages%}
+     {%for mess in messages%}
+       {{mess}}
+     {%endfor%}
+ {%endif%}
+ {% endwith %}
+
+ {% endblock %}
