@@ -2,13 +2,13 @@ from flask import render_template
 import sqlite3
 from flask import Flask
 from flask import request,redirect,url_for,session,flash
-from flask_wtf import Form
-from wtforms import TextField
+# from flask_wtf import Form
+# from wtforms import TextField
 
 import ibm_db
 
 
-conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=9938aec0-8105-433e-8bf9-0fbb7e483086.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud;PORT=32459;PROTOCOL=TCPIP;SECURITY=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=vqf74844;PWD=D5iOiJ8ilcEj5VL2;", "", "")
+conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=b0aebb68-94fa-46ec-a1fc-1c999edb6187.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud;PORT=31249;PROTOCOL=TCPIP;SECURITY=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=fyy29026;PWD=mbetqjaHPjVSouM3;", "", "")
 print("Opened database successfully")
 
 app = Flask(__name__)
