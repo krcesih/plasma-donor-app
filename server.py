@@ -8,7 +8,7 @@ from flask import request,redirect,url_for,session,flash
 import ibm_db
 
 
-conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=b0aebb68-94fa-46ec-a1fc-1c999edb6187.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud;PORT=31249;PROTOCOL=TCPIP;SECURITY=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=fyy29026;PWD=mbetqjaHPjVSouM3;", "", "")
+conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=b0aebb68-94fa-46ec-a1fc-1c999edb6187.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud;PORT=31249;PROTOCOL=TCPIP;SECURITY=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=fyy29026;PWD=qVHw50ZHhvAFJ0VT;", "", "")
 print("Opened database successfully")
 
 app = Flask(__name__)

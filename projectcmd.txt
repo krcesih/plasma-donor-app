@@ -1,0 +1,23 @@
+Need to download
+1. Git bash
+
+To clone the project
+syntax : git clone project_name
+git clone https://github.com/krcesih/plasma-donor-app.git
+
+To know current branch 
+git branch
+
+To change branch
+syntax : git checkout branch_name
+git checkout common
+
+To install the requirements of the project
+pip install -r requirements.txt
+
+To install ibm database
+pip install ibm_db
+
+To run the project
+syntax : python filename.py
+python server.py

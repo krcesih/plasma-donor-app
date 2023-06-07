@@ -5,21 +5,21 @@
 {% if rows is defined %}
 {% for row in rows %}
         <div class="card text-left border-secondary mb-3 mt-2 mx-auto" style="width: 70rem;">
-          <div class="card-header border-secondary">from {{row['FROMEMAIL']}} </div>
+          <div class="card-header border-secondary">from {{row['fromemail']}} </div>
             <div class="card-body text-success ml-3">
-              <h5 class="card-title ml-3">{{row['TONAME']}} sent you a plasma request his address is </h5>
-              <p class="card-text ml-3">{{row['TOADDR']}}</p>
+              <h5 class="card-title ml-3">{{row['toname']}} sent you a plasma request his address is </h5>
+              <p class="card-text ml-3">{{row['toaddr']}}</p>
             <div class="d-flex justify-content-end">
-            {% if (row['TOEMAIL'] == session['username']) and ((row['STATUS'] == None) or (row['STATUS'] == 'PENDING')) %}
+            {% if (row['toemail'] == session['username']) and ((row['status'] == None) or (row['status'] == 'PENDING')) %}
               <div>
-                <a class="btn btn-outline-secondary" href = "{{url_for('changestatus',emailID=row['ID'] | string + 'A')}}">Accept</a>
-                <a class="btn btn-outline-secondary" href = "{{url_for('changestatus',emailID=row['ID'] | string + 'R')}}">Reject</a>
+                <a class="btn btn-outline-secondary" href = "{{url_for('changestatus',emailID=row['id'] | string + 'A')}}">Accept</a>
+                <a class="btn btn-outline-secondary" href = "{{url_for('changestatus',emailID=row['id'] | string + 'R')}}">Reject</a>
                 
               </div>
 
             {% else %}
             <div>
-              <p>{{row['STATUS']}}</p>
+              <p>{{row['status']}}</p>
              
             </div>
             {% endif %}
@@ -33,7 +33,7 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">No Notifications</h1>
-    <p class="lead">sorry you have ho new notifications</p>
+    <p class="lead">sorry you have no new notifications</p>
   </div>
 </div>
 {% endif %}

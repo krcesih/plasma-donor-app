@@ -48,21 +48,21 @@
       <div class="accordion" id="searchUserExpand">
         {% for s in search %}
         <div class="card text-left" style="width: 70rem">
-          {% if s['AVAILABLE'] %}
-            <div class="card-header" style="color: lightgreen" data-toggle="collapse" data-target={{"#collapsesearch" + s["INDEX"] | string}} aria-expanded="true" aria-controls={{ "collapsesearch" + s["INDEX"] | string }}>{{s["NAME"]}} (Available)</div>
+          {% if s['available'] == 'T' %}
+            <div class="card-header" style="color: lightgreen" data-toggle="collapse" data-target={{"#collapsesearch" + s["index"] | string}} aria-expanded="true" aria-controls={{ "collapsesearch" + s["index"] | string }}>{{s["name"]}} (Available)</div>
           {% else %}
-            <div class="card-header" style="color: red" data-toggle="collapse" data-target={{"#collapsesearch" + s["INDEX"] | string}} aria-expanded="false" aria-controls={{ "collapsesearch" + s["INDEX"] | string }}>{{s["NAME"]}} (Unavailable)</div>
+            <div class="card-header" style="color: red" data-toggle="collapse" data-target={{"#collapsesearch" + s["index"] | string}} aria-expanded="false" aria-controls={{ "collapsesearch" + s["index"] | string }}>{{s["name"]}} (Unavailable)</div>
           {% endif %}
-          <div class="card-body ml-3" data-parent="#searchUserExpand" aria-labelledby={{"headingsearch" + s["INDEX"] | string }} id={{"collapsesearch" + s["INDEX"] | string}}>
-            <h5 class="card-title ml-3">{{s['EMAIL']}}</h5>
+          <div class="card-body ml-3" data-parent="#searchUserExpand" aria-labelledby={{"headingsearch" + s["index"] | string }} id={{"collapsesearch" + s["index"] | string}}>
+            <h5 class="card-title ml-3">{{s['email']}}</h5>
             <h6 class="card-subtitle mb-2 ml-3 text-muted">
-              Blood Group: {{s['BG']}}
+              Blood Group: {{s['bg']}}
             </h6>
             <p class="card-text ml-3">
-              Address: {{s["ADDR"]}} {{ s["CITY"]}} {{s['PIN']}}
+              Address: {{s["addr"]}} {{ s["city"]}} {{s['pin']}}
               <br />
 
-              {% if session['username'] == s['EMAIL']%}
+              {% if session['username'] == s['email']%}
 
               <span
                 class="d-inline-block"
@@ -123,7 +123,7 @@
                     <form
                       id="contactform"
                       method="POST"
-                      action="{{url_for('contactforblood',emailid=s['EMAIL'])}}"
+                      action="{{url_for('contactforblood',emailid=s['email'])}}"
                     >
                       <label for="name">Name</label>
                       <input type="text" name="nm" class="form-control" required />
@@ -171,21 +171,21 @@
       <div class="accordion" id="userExpand">
         
         {% for row in rows %}
-        <div class="card text-left" id={{"heading" + row["INDEX"] | string }} style="width: 70rem">
-          {% if row['AVAILABLE'] == True %}
-          <div class="card-header" style="color : lightgreen" data-toggle="collapse" data-target={{"#collapse" + row["INDEX"] | string}} aria-expanded="true" aria-controls={{"collapse" + row["INDEX"] | string}}>{{row["NAME"]}} (Available)</div>
+        <div class="card text-left" id={{"heading" + row["index"] | string }} style="width: 70rem">
+          {% if row['available'] == 'T' %}
+          <div class="card-header" style="color : lightgreen" data-toggle="collapse" data-target={{"#collapse" + row["index"] | string}} aria-expanded="true" aria-controls={{"collapse" + row["index"] | string}}>{{row["name"]}} (Available)</div>
           {% else %}
-          <div class="card-header" style="color : red" data-toggle="collapse" data-target={{"#collapse" + row["INDEX"] | string}} aria-expanded="false" aria-controls={{"collapse" + row["INDEX"] | string}}>{{row["NAME"]}} (Unavailable)</div>
+          <div class="card-header" style="color : red" data-toggle="collapse" data-target={{"#collapse" + row["index"] | string}} aria-expanded="false" aria-controls={{"collapse" + row["index"] | string}}>{{row["name"]}} (Unavailable)</div>
           {% endif %}
-          <div class="card-body ml-3" data-parent="#userExpand" aria-labelledby={{"heading" + row["INDEX"] | string }} id={{"collapse" + row["INDEX"] | string}}>
-            <h5 class="card-title ml-3">{{row['EMAIL']}}</h5>
+          <div class="card-body ml-3" data-parent="#userExpand" aria-labelledby={{"heading" + row["index"] | string }} id={{"collapse" + row["index"] | string}}>
+            <h5 class="card-title ml-3">{{row['email']}}</h5>
             <h6 class="card-subtitle mb-2 ml-3 text-muted">
-              Blood Group: {{row['BG']}}
+              Blood Group: {{row['bg']}}
             </h6>
             <p class="card-text ml-3">
-              Address: {{row["ADDR"]}} {{ row["CITY"]}} {{row['PIN']}}
+              Address: {{row["addr"]}} {{ row["city"]}} {{row['pin']}}
               <br />
-              {% if session['username'] == row['EMAIL']%}
+              {% if session['username'] == row['email']%}
 
               <span
                 class="d-inline-block"
@@ -206,7 +206,7 @@
               <button
                 type="button"
                 class="btn btn-primary mt-1"
-                onclick="send_notification_clicked(row['EMAIL']);"
+                onclick="send_notification_clicked(row['email']);"
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
                 
@@ -242,7 +242,7 @@
                     <form
                       id="contactform"
                       method="POST"
-                      action="{{url_for('contactforblood',emailid=row['EMAIL'])}}"
+                      action="{{url_for('contactforblood',emailid=row['email'])}}"
                     >
                       <label for="name">Name</label>
                       <input type="text" name="nm" class="form-control" required />
